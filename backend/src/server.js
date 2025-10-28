@@ -261,12 +261,28 @@ const app = express();
 /* ============================================================
    🧩 MIDDLEWARE
    ============================================================ */
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "http://localhost:3000"], // ✅ Allow your React frontend
-    credentials: true,
-  })
-);
+
+// ✅ Define allowed origins (local + Render frontend)
+const allowedOrigins = [
+  "http://localhost:5173",       // Local dev (Vite)
+  "http://localhost:3000",       // Local dev (CRA)
+  "https://orbit-ai-essay-editor.onrender.com" // ✅ Your Render frontend URL
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `🚫 CORS blocked: Origin ${origin} not allowed.`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+}));
+
 app.use(bodyParser.json());
 
 // ✅ Check essential env vars
