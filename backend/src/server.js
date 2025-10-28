@@ -265,8 +265,8 @@ const app = express();
 // ✅ Define allowed origins (local + Render frontend)
 const allowedOrigins = [
   "http://localhost:5173",       // Local dev (Vite)
-  "http://localhost:3000",       // Local dev (CRA)
-  "https://orbit-ai-essay-editor.onrender.com" // ✅ Your Render frontend URL
+  "http://localhost:5000",       // Local dev (CRA)
+  "https://orbit-ai-essay-editor-2.onrender.com" // ✅ Your Render frontend URL
 ];
 
 app.use(cors({
