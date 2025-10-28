@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://https://orbit-ai-essay-editor.onrender.com/api",
+  baseURL: "http://https://orbit-ai-essay-editor-3.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },
