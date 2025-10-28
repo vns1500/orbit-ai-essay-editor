@@ -13,7 +13,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/auth/register", formData);
+      await axios.post("https://orbit-ai-essay-editor-3.onrender.com/api/auth/register", formData);
       setMessage("Account created successfully! Redirecting to login...");
       setTimeout(() => navigate("/login"), 2000); // redirect after 2 seconds
     } catch (err) {
